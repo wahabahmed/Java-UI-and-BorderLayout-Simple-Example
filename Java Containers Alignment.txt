@@ -1,0 +1,220 @@
+package com.automaticamusements.jukebook.client.tv;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class LookAndFeelDemo implements MouseListener {
+
+    LookAndFeelDemo() {
+        //Main Container
+        JFrame mainContainer = new JFrame("Main Frame");
+        mainContainer.setSize(800, 600);
+        mainContainer.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainContainer.setUndecorated(true);
+        mainContainer.setPreferredSize(new Dimension(800, 600));
+
+        // JPanels TOP
+        JPanel headerContainer = new JPanel();
+        headerContainer.setBorder(new LineBorder(Color.BLACK, 1));
+        headerContainer.setLayout(new BorderLayout());
+        headerContainer.setPreferredSize(new Dimension(800, 100));
+
+        JPanel leftHeaderContainer = new JPanel();
+        leftHeaderContainer.setPreferredSize(new Dimension(250, 100));
+
+        JPanel centerHeaderContainer = new JPanel();
+        JLabel logo = new JLabel();
+        logo.setOpaque(false);
+        logo.setIcon(new ImageIcon("C:/footer.png"));
+        centerHeaderContainer.add(logo);
+
+        JPanel rightHeaderContainer = new JPanel();
+
+        rightHeaderContainer.setPreferredSize(new Dimension(250, 100));
+
+        //Button
+        JButton menuButton = new JButton("Wahab");
+        changeUiForButton(menuButton);
+
+
+        JButton menuButton1 = new JButton("Exit");
+        changeUiForButton(menuButton1);
+        menuButton1.addMouseListener(this);
+
+        rightHeaderContainer.add(menuButton);
+        rightHeaderContainer.add(menuButton1);
+
+        headerContainer.add(leftHeaderContainer, BorderLayout.WEST);
+        headerContainer.add(centerHeaderContainer, BorderLayout.CENTER);
+        headerContainer.add(rightHeaderContainer, BorderLayout.EAST);
+
+        //LEFT MIDDLE
+        JPanel leftMiddleContainer = new JPanel();
+        leftMiddleContainer.setBorder(new LineBorder(Color.ORANGE, 1));
+        leftMiddleContainer.setPreferredSize(new Dimension(100, 100));
+
+        JButton leftButton1 = new JButton("Button1");
+        JButton leftButton2 = new JButton("Button1");
+        JButton leftButton3 = new JButton("Button1");
+
+        changeUiForButton(leftButton1);
+        changeUiForButton(leftButton2);
+        changeUiForButton(leftButton3);
+
+        leftMiddleContainer.add(leftButton1);
+        leftMiddleContainer.add(leftButton2);
+        leftMiddleContainer.add(leftButton3);
+
+        // , CENTER MIDDLE Panel with Grid layout to show 2x2 Buttons
+        JPanel centerMiddleContainer = new JPanel(new GridLayout(2, 2, 50, 50));
+        centerMiddleContainer.setBorder(new LineBorder(Color.MAGENTA, 1));
+
+        JButton centerButton1 = new JButton("Button1");
+        centerButton1.setPreferredSize(new Dimension(250, 150));
+        changeUiForBigButton(centerButton1);
+
+        JButton centerButton2 = new JButton("Button2");
+        centerButton2.setPreferredSize(new Dimension(250, 150));
+        changeUiForBigButton(centerButton2);
+
+        JButton centerButton3 = new JButton("Button3");
+        centerButton3.setPreferredSize(new Dimension(250, 150));
+        changeUiForBigButton(centerButton3);
+
+        JButton centerButton4 = new JButton("Button4");
+        centerButton3.setPreferredSize(new Dimension(250, 150));
+        changeUiForBigButton(centerButton4);
+
+        centerMiddleContainer.add(centerButton1);
+        centerMiddleContainer.add(centerButton2);
+        centerMiddleContainer.add(centerButton3);
+        centerMiddleContainer.add(centerButton4);
+
+        //RIGHT MIDDLE
+        JPanel rightMiddleContainer = new JPanel();
+        rightMiddleContainer.setBorder(new LineBorder(Color.GREEN, 1));
+        rightMiddleContainer.setPreferredSize(new Dimension(100, 100));
+
+        JButton rightButton1 = new JButton("Button1");
+        JButton rightButton2 = new JButton("Button1");
+        JButton rightButton3 = new JButton("Button1");
+
+        changeUiForButton(rightButton1);
+        changeUiForButton(rightButton2);
+        changeUiForButton(rightButton3);
+
+        rightMiddleContainer.add(rightButton1);
+        rightMiddleContainer.add(rightButton2);
+        rightMiddleContainer.add(rightButton3);
+
+        // FOOTER
+        JPanel footerContainer = new JPanel();
+        footerContainer.setBorder(new LineBorder(Color.CYAN, 1));
+        footerContainer.setLayout(new BorderLayout());
+        footerContainer.setPreferredSize(new Dimension(800, 100));
+
+
+        //Footer Panel
+        JPanel leftFooterPanel = new JPanel();
+        leftFooterPanel.setPreferredSize(new Dimension(250, 100));
+        leftFooterPanel.setBorder(new LineBorder(Color.BLACK, 1));
+        leftFooterPanel.setBackground(Color.RED);
+
+        JPanel centerFooterPanel = new JPanel();
+        centerFooterPanel.setPreferredSize(new Dimension(300, 100));
+        centerFooterPanel.setBorder(new LineBorder(Color.yellow, 5));
+        centerFooterPanel.setBackground(Color.cyan);
+
+        JPanel rightFooterPanel = new JPanel();
+        rightFooterPanel.setPreferredSize(new Dimension(250, 100));
+        rightFooterPanel.setBorder(new LineBorder(Color.RED, 1));
+        rightFooterPanel.setBackground(Color.green);
+
+        footerContainer.add(leftFooterPanel, BorderLayout.WEST);
+        footerContainer.add(centerFooterPanel, BorderLayout.CENTER);
+        footerContainer.add(rightFooterPanel, BorderLayout.EAST);
+
+
+        mainContainer.add(headerContainer, BorderLayout.NORTH);
+        mainContainer.add(leftMiddleContainer, BorderLayout.WEST);
+        mainContainer.add(centerMiddleContainer, BorderLayout.CENTER);
+        mainContainer.add(rightMiddleContainer, BorderLayout.EAST);
+        mainContainer.add(footerContainer, BorderLayout.SOUTH);
+
+        mainContainer.setVisible(true);
+
+
+    }
+
+    private void changeUiForButton(JButton button) {
+        button.setFocusPainted(false);
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
+        button.setPreferredSize(new Dimension(100, 50));
+        button.setSize(100, 50);
+
+        if (button.getText() == "Exit") {
+            button.setText("");
+            button.setIcon(new ImageIcon(new ImageIcon("c:/test/powerOn.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+            button.setRolloverIcon(new ImageIcon(new ImageIcon("c:/test/powerOff.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+        } else {
+
+            button.setIcon(new ImageIcon(new ImageIcon("c:/test/button.png").getImage().getScaledInstance(110, 50, Image.SCALE_SMOOTH)));
+            button.setRolloverIcon(new ImageIcon(new ImageIcon("c:/test/buttonHover.png").getImage().getScaledInstance(110, 50, Image.SCALE_SMOOTH)));
+        }
+    }
+
+
+    private void changeUiForBigButton(JButton button) {
+        button.setFocusPainted(false);
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
+        button.setPreferredSize(new Dimension(250, 150));
+        button.setIcon(new ImageIcon(new ImageIcon("c:/test/buttonHover.png").getImage().getScaledInstance(750, 350, Image.SCALE_SMOOTH)));
+        button.setRolloverIcon(new ImageIcon(new ImageIcon("c:/test/button.png").getImage().getScaledInstance(750, 350, Image.SCALE_SMOOTH)));
+    }
+
+    public static void main(String[] args) {
+        //Schedule a job for the event dispatch thread:
+        //creating and showing this application's GUI.
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new LookAndFeelDemo();
+            }
+        });
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.exit(1);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+}
